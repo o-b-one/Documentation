@@ -8,6 +8,8 @@ description: Initialize new application
 
 Setting a SugoiJS application is only three steps away.
 
+![Simple init of new application](.gitbook/assets/sugoijs-install.gif)
+
 ### Installing @sugoi/cli
 
 ```bash
@@ -19,13 +21,13 @@ $ npm i -g @sugoi/cli
 Use the initialization wizard to define your needs.
 
 ```bash
-$ sugoi init 
+$ sugoi init <app name> && cd <app name>/server
 ```
 
 **Or**
 
 ```bash
-$ sgi init
+$ sgi init <app name> && cd <app name>/server
 ```
 
 ### Install & Run
