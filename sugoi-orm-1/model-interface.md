@@ -1,6 +1,12 @@
 # Model interface
 
-**Find**
+## Overview
+
+The SugoiJS `ModelAbstract` and `ConnectableModel` contains predefined methods for CRUD which use as interface for the custom CRUD logic
+
+## **Interface**
+
+### **Find**
 
 > **\(static method\)** findAll\(query: any = {}, options?: QueryOptions\) - query all records
 >
@@ -10,7 +16,7 @@
 >
 > **\(static method\)** find\(query: any = {}, options?: QueryOptions\) - customize query
 
-**Remove**
+### **Remove**
 
 > **\(static method\)** removeAll\(query: any = {}, options?: QueryOptions\) - remove all records
 >
@@ -20,13 +26,17 @@
 >
 > **\(instance method\)** remove\(query: any = {}, options?: QueryOptions\) - remove the record itself
 
-**Save \(create\)**
+### **Save \(create\)**
 
 > **\(instance method\)** save\(options?: QueryOptions\) - Save instance to DB\Microservice
 
-**Update**
+### **Update**
 
 > **\(static method\)** updateById\(id: string \| number, options:QueryOptions ={limit:1}\) - update by id
+>
+>
+>
+> **\(static method\)** updateAll\(query:any, data:any, options:QueryOptions\) - update all records which fit the query term
 >
 > **\(instance method\)** update\(options?: QueryOptions\) - Update instance on DB\Microservice
 

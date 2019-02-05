@@ -1,24 +1,28 @@
 ---
-description: SugoiJS pre-defined module for mongoDB client
+description: SugoiJS predefined module for mongoDB client
 ---
 
 # MongoDB
 
-SugoiJS provides mongoDB client which based on the ORM module with all of it's abilities.
+[![npm version](https://badge.fury.io/js/%40sugoi%2Fmongodb.svg)](https://badge.fury.io/js/%40sugoi%2Fmongodb) [![Build Status](https://travis-ci.org/sugoiJS/mongoDB.svg?branch=master)](https://travis-ci.org/sugoiJS/mongoDB) [![codecov](https://codecov.io/gh/sugoiJS/mongoDB/branch/master/graph/badge.svg)](https://codecov.io/gh/sugoiJS/mongoDB)
+
+## Overview
+
+SugoiJS provides mongoDB client that is based on the ORM module with all of its' abilities.
 
 ## Bootstrapping
 
-Bootstrapping done by only one line:
+Bootstrapping is done by one line:
 
-```text
+```typescript
 MongoModel.setConnection(configuration:IConnectionConfig,connectionName:string = "default")
 ```
 
-The `connectionName` parameter is used for multiple connection
+The `connectionName` parameter is used for multiple connection.
 
-### Example:
+### Example
 
-```text
+```typescript
 import {MongoModel} from "@sugoi/mongodb";
 
 MongoModel.setConnection({
@@ -28,16 +32,16 @@ MongoModel.setConnection({
                         db: "myAuthDB", //authorization DB
                         user: "dbUser",
                         password: "dbPassword"
-                      }, "adminDB");
+}, "adminDB");
 ```
 
 ## Creating a model
 
-to create a model, all you need is to extend the MongoModel class and set your properties.
+For creating a model, all you need to do is to extend the `MongoModel` class and define your properties.
 
-Just like that:
+### Example
 
-```text
+```typescript
 export class Message extends MongoModel {
     public userId:string;
     public body:string;
@@ -50,11 +54,15 @@ export class Message extends MongoModel {
 }
 ```
 
-By default the collection name is the class name \(case sensitive\).
+## Model naming
 
-For override the collection name, use the @ModelName decorator:
+By default the model name is the class name \(case sensitive\).
 
-```text
+For override the collection name, use the `@ModelName` decorator
+
+### Example
+
+```typescript
 @ModelName("AppMessage")
 export class Message extends MongoModel {
         public userId:string;
@@ -70,9 +78,11 @@ export class Message extends MongoModel {
 
 ## **Using connections**
 
-For using different connection for model you able to either use all you need to use `setConnectionName` static method or `ConnectionName` decorator.
+For using different connection for a model you can use `setConnectionName` static method or `ConnectionName` decorator.
 
-```text
+### Example
+
+```typescript
 @ModelName("AppMessage")
 @ConnectionName("appDB")
 export class Message extends MongoModel {
@@ -90,7 +100,7 @@ export class Message extends MongoModel {
 
 
 
-More information on the [@sugoi/mongoDB page](https://www.npmjs.com/package/@sugoi/mongodb)
+For more information enter the @sugoi/orm page
 
 
 

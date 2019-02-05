@@ -1,51 +1,162 @@
 ---
-description: Models which are based on direct connection to DB
+description: Models that are based on direct connection to DB
 ---
 
 # Connectable model
 
-Example \(by the [@sugoi/mongodb](https://www.npmjs.com/package/@sugoi/mongodb) package implementation\):
+## Overview
 
-```text
-import {Connection,ConnectableModel} from "@sugoi/orm";
+## Initialize
 
-export class MongoModel extends ConnectableModel{
-    protected static ConnectionType:Connection = MongoConnection;
+### **First Step - Set a connection item**
 
-    constructor() {
-        super();
-    }
+'Connection item' is the class which contains all of the communication establishing/closing logic.   
+Another role of this class is to reflect the connection current status. 
 
-    public static connectEmitter(connection: MongoConnection): Promise<{ dbInstance: Db, client: MongoClient }> {
+{% hint style="warning" %}
+The class must implement the IConnection interface
+{% endhint %}
+
+#### Example
+
+{% hint style="info" %}
+Example \(by the @sugoi/mongodb package implementation\)
+{% endhint %}
+
+{% code-tabs %}
+{% code-tabs-item title="Connection implementation" %}
+```typescript
+    import {CONNECTION_STATUS, IConnection} from "@sugoi/orm";
+    import {Db, MongoClient} from "mongodb";
+    import {IMongoConnectionConfig} from "../interfaces/mongo-connection-config.interface";
+
+
+    export class MongoConnection implements IConnection, IMongoConnectionConfig {
+        protocol: string = `mongodb://`;
+        port: number = 27017;
+        hostName: string;
+        status: CONNECTION_STATUS;
+        connectionClient: {
+            dbInstance: Db,
+            client: MongoClient
+        };
+        db?: string;
+        connectionName?: string;
+        user?: string;
+        password?: string;
+        authDB?: string;
+        public newParser: boolean = false;
+
+
+        connect(): Promise<boolean> {
             const connectionConfig = {
-                authSource: connection.authDB
+                authSource: this.authDB || this.db
             };
+            if (this.user && this.password) {
+                connectionConfig['auth'] = {
+                    user: this.user,
+                    password: this.password
+                };
+            }
+            if (this.shouldUseNewParser()) {
+                connectionConfig['useNewUrlParser'] = true;
+            }
 
-            return MongoClient.connect(connection.getConnectionString(), connectionConfig)
+            return MongoClient.connect(this.getConnectionString(), connectionConfig)
                 .then((client: MongoClient) => {
-                    return {client}
+                    client.on("error", () => this.disconnect());
+                    this.connectionClient = {
+                        dbInstance: client.db(this.db),
+                        client
+                    };
+                    return true
+                })
+                .catch(err => {
+                    console.error(err);
+                    throw err;
                 });
         }
-}
+
+
+        isConnected(): Promise<boolean> {
+            return Promise.resolve(this.status === CONNECTION_STATUS.CONNECTED);
+        }
+
+
+        public shouldUseNewParser(): boolean {
+            return this.newParser;
+        }
+
+        public disconnect() {
+            if (!this.connectionClient)
+                return Promise.resolve(false);
+            else {
+                return this.connectionClient.client.close(true)
+                    .then((disconnectObject) => {
+                        this.status = CONNECTION_STATUS.DISCONNECTED
+                        return true;
+                    });
+            }
+
+        }
+
+        public getConnectionString() {
+            let connString = this.protocol;
+            if (this.user && this.password) {
+                connString += `${this.user}:${this.password}@`;
+            }
+            connString += `${this.hostName}:${this.port}`;
+            return connString;
+        }
+    } 
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+### **Second Step - Setup the connection by config**
+
+Setting a connection done by the `ConnectableModel.setConnection` static function
+
+```typescript
+public static setConnection(configData: IConnectionConfig, 
+                            connectionClass:, 
+                            connectionName: string = "default"): Promise<IConnectionConfig>
 ```
 
-**Setting connectable model connection name**
+This method will create a connection item and store it for later use. 
 
-By default connectable model use connection which label by name "default" \(case sensitive\).
+#### Example
 
-For changing the connection name use:
+{% code-tabs %}
+{% code-tabs-item title="Implementation" %}
+```typescript
+export class MongoModel extends ConnectableModel {
 
-1. Class static method `setConnectionName(name:string)`:
-
-   ```text
-    Post.setConnectionName("adminDB");
-   ```
-
-2. `@ConnectionName(name:string)` decorator:
-
-   ```text
-    @ConnectionName("adminDB")
-    export class Post extends ModelAbstract{
+    public static setConnection(configData: IMongoConnectionConfig, 
+                                connectionClass: any = null, 
+                                connectionName: any = "default"): Promise<IConnection> {
+        let connectionClassTemp: any = MongoConnection;
+        if (!connectionClass || typeof connectionClass === "string") {
+            connectionName = (<string>connectionClass) || "default";
+        }
+        // Necessary for defining the connection property
+        return super.setConnection(configData, connectionClassTemp, connectionName);
     }
-   ```
+...
+}
+```
+{% endcode-tabs-item %}
+
+{% code-tabs-item title="Usage" %}
+```typescript
+MongoModel.setConnection({
+        port: 27017,
+        protocol: "mongodb://",
+        hostName: "127.0.0.1",
+        db: "SUGOIJS-EXAMPLE",
+        newParser: true
+    },MongoConnection,"SUGOIJS-EXAMPLE-CONNECTION")   
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 

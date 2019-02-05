@@ -4,11 +4,15 @@ description: Singleton services for easy data manipulation
 
 # Setting services
 
-### Define class as singleton
+## Overview
 
-For setting class as service the class must be decorated with `@Injectable` decorator, this will set the class as singleton.
+Service is a singleton class instance which able to be used by any class using injection.
 
-```text
+## Defining class as a service
+
+For setting class as a service the class must be decorated with the `@Injectable()` decorator, this will set the class as singleton.
+
+```typescript
 @Injectable()
 class MyService{
     public listeners:number = 0;
@@ -25,9 +29,7 @@ class MyService{
 
 The service need to be set on the module services array:
 
-
-
-```text
+```typescript
 @ServerModule({
     services: [MyService]
 })
@@ -38,7 +40,13 @@ export class MyModule{
 
 later we will be able to inject the service instance.
 
-### **Variable binding**
+{% hint style="warning" %}
+Service constructor cannot be defined with any arguments that are not injectable.
+{% endhint %}
+
+
+
+## **Variable binding - Injection**
 
 * `@Inject(MyService) private myService:MyService`
 * `@Inject("MyService") private myService:MyService`
@@ -46,24 +54,107 @@ later we will be able to inject the service instance.
 
   \*\*\*\*
 
-### **Returning the value from the "container"**
+### **Retrieve value from the "container"**
 
-The [InversifyJS container](https://github.com/inversify/InversifyJS/blob/master/wiki/container_api.md) is handling the singleton objects.
+The [InversifyJS container](https://github.com/inversify/InversifyJS/blob/master/wiki/container_api.md) is handling and storing singleton objects.  
+The container is stored on the server instance, each request and the `ServerContainerService`
 
-The container is stored on the server instance, each request and the `ServerContainerService` by the instanceId, so it can be reached in the following ways:
+### Retrieve the container object
 
-* `server.container`
+We are able to retrieve the singleton class instance using the following methods:
+
+* `<HttpServer>server.container`
 * `req.container`
-* `ServerContainerService.getContainerById(serverInstanceId)`
+* `ServerContainerService.getContainerById(serverInstanceId)` - Using the _HttpServer_ object instanceId.
 
-After retrieving the container we will able to get the service instance as following:
+### Retrieve service instance
+
+After retrieving the container we able to get the service instance as following:
 
 * `private myService:MyService = container.get(MyService)`
+
+#### Or
+
 * `private myService:MyService = container.get("MyService")`
 
 ### 
 
-### 
+## Injection types and aliasing
 
+### Overview
 
+Using the module services we are able to define singleton services, constant values and factories for easy injection.
+
+The module services support more informative data structure
+
+```typescript
+{
+    provide: Class |Factory method| Value,
+    useName: string,
+    type?:"constant"|"singleton"|"factory" // usually resolved automatically
+}
+```
+
+{% hint style="info" %}
+**Injection remains the same for all types**
+{% endhint %}
+
+### Examples
+
+#### Singleton
+
+Useful for getting the same instance of a class
+
+```typescript
+@ServerModule({
+    services: [
+        MyService,
+        {
+            provide: MyNewService,
+            useName: "MyServiceV2"
+        }
+    ]
+})
+export class MyModule{
+    constructor(){}
+}
+```
+
+#### Factory
+
+Useful for getting different instances of the same class
+
+```typescript
+@ServerModule({
+    services: [
+        MyService,
+        {
+            provide: () => new MyService(),
+            useName: "MyServiceFactory"
+        }
+    ]
+})
+export class MyModule{
+    constructor(){}
+}
+```
+
+#### Constant
+
+Useful for services instances \(Redis, Socket e.g.\), configuration values and many more
+
+```typescript
+@ServerModule({
+    services: [
+        MyService,
+        {
+            provide: SocketService.init(server),
+            useName: "SocketServer"
+        }
+    ]
+})
+export class MyModule{
+    constructor(){}
+}
+```
 
