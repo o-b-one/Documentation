@@ -44,41 +44,6 @@ later we will be able to inject the service instance.
 Service constructor cannot be defined with any arguments that are not injectable.
 {% endhint %}
 
-
-
-## **Variable binding - Injection**
-
-* `@Inject(MyService) private myService:MyService`
-* `@Inject("MyService") private myService:MyService`
-* `constructor(private myService:MyService)`
-
-  \*\*\*\*
-
-### **Retrieve value from the "container"**
-
-The [InversifyJS container](https://github.com/inversify/InversifyJS/blob/master/wiki/container_api.md) is handling and storing singleton objects.  
-The container is stored on the server instance, each request and the `ServerContainerService`
-
-### Retrieve the container object
-
-We are able to retrieve the singleton class instance using the following methods:
-
-* `<HttpServer>server.container`
-* `req.container`
-* `ServerContainerService.getContainerById(serverInstanceId)` - Using the _HttpServer_ object instanceId.
-
-### Retrieve service instance
-
-After retrieving the container we able to get the service instance as following:
-
-* `private myService:MyService = container.get(MyService)`
-
-#### Or
-
-* `private myService:MyService = container.get("MyService")`
-
-### 
-
 ## Injection types and aliasing
 
 ### Overview
@@ -148,7 +113,7 @@ Useful for services instances \(Redis, Socket e.g.\) and configuration values
     services: [
         MyService,
         {
-            provide: SocketService.init(server),
+            provide: socketServer,
             useName: "SocketServer"
         }
     ]
@@ -157,4 +122,62 @@ export class MyModule{
     constructor(){}
 }
 ```
+
+## **Dynamic registration**
+
+### Overview
+
+Registration can be done in run time using the container 'bind' method.  
+The bind method allows to bind a class\function\value to a property.
+
+### Retrieve the container object
+
+We are able to retrieve the singleton class instance using the following methods:
+
+* `<HttpServer>server.container`
+* `req.container`
+* `ServerContainerService.getContainerById(serverInstanceId)` - Using the _HttpServer_ object instanceId.
+
+### Example
+
+`server.container.bind('HttpHandler').to(Http);`
+
+`server.container.bind('DBConfig').toConstant({ip: 10.10.10.10});`
+
+`server.container.bind('Human').toFactory(()=>new Human());`
+
+
+
+## **Variable binding - Injection**
+
+* `@Inject(MyService) private myService:MyService`
+* `@Inject("MyService") private myService:MyService`
+* `constructor(private myService:MyService)`
+
+  \*\*\*\*
+
+### **Retrieve value from the "container"**
+
+The [InversifyJS container](https://github.com/inversify/InversifyJS/blob/master/wiki/container_api.md) is handling and storing singleton objects.  
+The container is stored on the server instance, each request and the `ServerContainerService`
+
+### Retrieve the container object
+
+{% hint style="info" %}
+Check the previous section
+{% endhint %}
+
+### Retrieve service instance
+
+After retrieving the container we able to get the service instance as following:
+
+* `private myService:MyService = container.get(MyService)`
+
+#### Or
+
+* `private myService:MyService = container.get("MyService")`
+
+### 
+
+
 
