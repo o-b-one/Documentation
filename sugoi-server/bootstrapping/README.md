@@ -54,6 +54,16 @@ For setting error handlers use:
 setErrorHandlers((app) => void)
 ```
 
+#### Predefined error handler
+
+SugoiJS provides a predefined error handler named _\(defaultErrorHandler\)_ which provides loggin the error and returning an error to the customer.
+
+Example:
+
+```typescript
+app.use(defaultErrorHandler(<boolean>isDev))
+```
+
 Full example:
 
 ```typescript
@@ -74,15 +84,7 @@ Full example:
         app.use(function (req, res, next) {
             return res.sendFile(path.resolve(paths.index))
         });
-        app.use((req,res,next)=>{
-            return function(err){
-                if(err instanceof SugoiServerError){
-                    console.log.error(err.stack);
-                    console.log.error(`${err.message} ${JSON.stringify(err.data)});
-                    res.status(500).send("Internal error");
-                }
-            }
-        });
+        app.use(defaultErrorHandler(isDev));
     });
 ```
 
