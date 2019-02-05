@@ -141,7 +141,7 @@ export class MyModule{
 
 #### Constant
 
-Useful for services instances \(Redis, Socket e.g.\), configuration values and many more
+Useful for services instances \(Redis, Socket e.g.\) and configuration values
 
 ```typescript
 @ServerModule({
