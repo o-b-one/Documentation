@@ -65,6 +65,7 @@
 * [Singleton](sugoi-core/singleton.md)
 * [Exception](sugoi-core/exception.md)
 * [Casting](sugoi-core/cast.md)
+* [@PostConstruct\(\)](sugoi-core/postconstruct.md)
 * [@Iterable\(\)](sugoi-core/iterable.md)
 * [@Deprecated](sugoi-core/deprecated-msg-string.md)
 * [ComparableSchema](sugoi-core/comparableschema.md)
