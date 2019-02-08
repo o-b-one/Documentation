@@ -14,7 +14,7 @@ SugoiJS provides an easier definition of fows in your application with predefine
 
 The combination of TypeScript, decorators, abstractions and predefined lifecycles will optimize your development experience along with your application reliability.
 
-SugoiJS has four root modules that act as standalone units:
+SugoiJS has five root modules that act as standalone units:
 
 * \*\*\*\*[**@sugoi/core**](https://wiki.sugoijs.com/sugoi-core/introduction) - This is the core module of SugoiJS, it defines reusable components like policies \(aka Guards\), extendable exceptions, container handler \(for singleton\), service injection and much more! \*The core module is imported and used by all of the SugoiJS modules.
 * \*\*\*\*[**@sugoi/server**](https://wiki.sugoijs.com/sugoi-server/getting-started) - The server module provides fully decorated [express ](https://github.com/expressjs)based web server with additional abilities like:
@@ -27,6 +27,9 @@ SugoiJS has four root modules that act as standalone units:
 
 * \*\*\*\*[**@sugoi/orm**](https://wiki.sugoijs.com/sugoi-orm-1/getting-started) - The ORM module is used for o[bject-relational](https://en.wikipedia.org/wiki/Object-relational_mapping) mapping. this module defines abstract models for REST usage and DB connection usage. As well as casting resources to class instances, the ORM module provides CRUD and lifecycle flow:  before\(CRUD\),after\(CRUD\), beforeValidate,validate. - Sub-module of this module is [@sugoi\mongodb](https://sugoijs.com/#/documentation/mongoDB/index).
 * [**@sugoi/socket**](https://wiki.sugoijs.com/sugoi-socket/getting-started) - The socket module is an easy plug and play socket handler module which based on [socket.io](https://github.com/socketio/socket.io). This module gives you the ability to bind event to function using the @SocketOn\(eventName\) decorator on top of the function.
+* [**@sugoi/r**](https://wiki.sugoijs.com/sugoi-socket/getting-started)**edis** - The Redis module is an easy plug and play redis handler module. This module gives you the ability to handle Redis callbacks with promises, bind channel\pattern subscription events to function using the @OnRedisMessage\(channel\)/OnRedisPMessage\(pattern\)
+
+   decorator on top of the function.
 
 Try it now with our [demo application](http://demo.sugoijs.com/)
 
