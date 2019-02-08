@@ -49,6 +49,14 @@
 * [Dynamic event handling](sugoi-socket/dynamic-event-handling.md)
 * [Schema validator](sugoi-socket/schema-validator.md)
 
+## @sugoi/redis
+
+* [Getting started](sugoi-redis/getting-started.md)
+* [Boostrapping](sugoi-redis/boostrapping.md)
+* [RedisProvider](sugoi-redis/redisprovider.md)
+* [Pub/Sub](sugoi-redis/pub-sub.md)
+* [Scripts](sugoi-redis/scripts.md)
+
 ## @sugoi/core
 
 * [Getting started](sugoi-core/introduction.md)

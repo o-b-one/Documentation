@@ -1,20 +1,10 @@
----
-description: 'SugoiJS socket module, based on socket.io package'
----
-
 # Getting started
 
-[![npm version](https://badge.fury.io/js/%40sugoi%2Fsocket.svg)](https://badge.fury.io/js/%40sugoi%2Fsocket) [![Build Status](https://travis-ci.org/sugoiJS/socket.svg?branch=master)](https://travis-ci.org/sugoiJS/socket) [![codecov](https://codecov.io/gh/sugoiJS/socket/branch/master/graph/badge.svg)](https://codecov.io/gh/sugoiJS/socket)
+
 
 ## Installation
 
-### Using @sugoi/cli
-
-Check the [get started](../get-started.md) section!
-
-### Manually
-
-> npm install --save @sugoi/socket
+> npm install --save @sugoi/redis
 
 #### tsconfig.json:
 
@@ -27,7 +17,7 @@ Under your tsconfig - compilerOptions set:
 
 **Template**
 
-You are able to use the config template which was set for the @sugoi/demo application:
+You can use the config template that was set for the @sugoi/demo application:
 
 ```text
 {
