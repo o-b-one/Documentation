@@ -42,7 +42,7 @@ expect(redisProvider).toBe(resolvedClient); // Should be truthy
     ]
 })
 export class BootstrapModule {
-    constructor(@Inject('RedisService') private _redisService: RedisProvider) {
+    constructor(@Inject('RedisService') private _redisService: TRedisProvider) {
     }
 }
 ```
