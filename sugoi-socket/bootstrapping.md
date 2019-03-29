@@ -1,5 +1,5 @@
 ---
-description: Setting up the socket server
+description: Setting up a socket server
 ---
 
 # Bootstrapping
@@ -8,8 +8,23 @@ description: Setting up the socket server
 
 Setting up the socket server done by the `socketService.init` method:
 
-```text
-  socketService.init(serverInstance:express.Application,
+### By existing server
+
+```typescript
+  socketService.init(serverInstance:http.Server|express.Application,
+                     namespace:string ="/",
+                     socketConfig?:socketOptions,
+                     connectionCallback?:(socket)=>void,
+                     disconnectCallback?:(socket)=>void
+):SocketIOStatic.Server;
+```
+
+### By port
+
+
+
+```typescript
+  socketService.init(portNumber:number,
                      namespace:string ="/",
                      socketConfig?:socketOptions,
                      connectionCallback?:(socket)=>void,
@@ -19,23 +34,21 @@ Setting up the socket server done by the `socketService.init` method:
 
 ### Example
 
-```text
-import {socketService} from "@sugoi/socket";
+```typescript
+import {SocketHandler} from "@sugoi/socket";
 
-// serverInstance is express\koa instance
+// serverInstance is server instance (sugoijs, express, koa, nodejs http etc.)
 // in case you are using @socket\server, the instance returns from the 'listen' method
-const socketServer = socketService.init(serverInstance);
+// signature - init(HttpServer: any, socketConfig: SocketIOStatic.ServerOptions, namespace: string): SocketIOStatic.Server
+const SocketHandler = socketService.init(serverInstance);
 ```
 
-### Init parameters
+## Init parameters
 
-`serverInstance` = Express\Koa server instance
-
-`namespace:string`- The socket server namespace to bind to, allow to assign different endpoint to the socket server, more info on [socket.io documentation](https://socket.io/docs/rooms-and-namespaces/).
-
+`serverInstance` =  The server instance the socket server should be attached to.  
 `socketConfig?:socketOptions` - The socket server configurations with the same interface as on [socket.io documentation](https://socket.io/docs/server-api/)
 
-```text
+```typescript
  socketOptions:{
       path: string,
       serveClient: boolean,
@@ -45,11 +58,9 @@ const socketServer = socketService.init(serverInstance);
  }
 ```
 
-`connectionCallback:(socket)=>void`  - Callback function for the socket server "connection" event.
+`namespace:string`- The socket server namespace to bind to, allow to assign different endpoint to the socket server, more info on [socket.io documentation](https://socket.io/docs/rooms-and-namespaces/).
 
-`disconnectCallback:(socket)=>void`  - Callback function for the socket server "disconnect" event.
+## Returned value
 
-### Returned value
-
-The returned value of the `socketService.init` method is the socket server instance \(`SocketIOStatic.Server`\).
+The returned value of the `SocketHandler.init` method is the socket server instance \(`SocketIOStatic.Server`\).
 

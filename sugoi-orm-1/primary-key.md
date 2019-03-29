@@ -4,39 +4,39 @@ description: Define what is the right property to relay on for "_ById" queries
 
 # Primary key
 
-For query and upsert data @sugoi use primary key of the instance\query object.
+For query and upsert data SugoiJS use primary key of the instance\query object.
 
-This primary key is property which decorated with @Primary\(\)
+The primary key is a property which decorated with @Primary\(\)
 
-Using the Primary key will done by:
+Using the Primary key will be done by:
 
 1. \(Utility function\) `getPrimaryKey(classToUse)`
 
-   Return the primary key name from given class, if not found null will return.
+   Return the primary key name from given class, if not found 'null' will be returned.
 
-2. \(static method\) `castIdToQuery(id:string,classToUse = this)`
+2. \(Static method\) `castIdToQuery(id:string,classToUse = this)`
 
-   Will return an object with property name which decorate with Primary as key and the id as value
+   Will return an object with property name which is decorated with Primary as the key and the ID as the value
 
    `classToUse` - class to get the primary key from \(default is `this`\)
 
 3. \(static method\) `getIdFromQuery(query: any,classToUse = this, deleteProperty:boolean = true)`
 
-   If query contain the primary key the function will return the query primary key value.
+   If query contains the primary key the function will return the query primary key value.
 
-   `classToUse` - class to get the primary key from \(default is `this`\)
+   `classToUse` - class to get the primary key from \(default is `this`\).
 
-   `deleteProperty` - delete primary key property from the query \(default is `true`\)
+   `deleteProperty` - delete primary key property from the query \(default is `true`\).
 
 4. \(instance method\) `getIdQuery():{[prop:string]:string}`
 
-   Return key value object of primary key and its value of the current instance
+   Returns a key value object of primary key and its' value for the current instance.
 
-   if no primary key set the function will return null;
+   if no primary key set the function will throw an exception;
 
 Full example:
 
-```text
+```typescript
 export class Post extends ModelAbstract{
     @Primary()
     public postId:string = "post-12";
@@ -57,5 +57,5 @@ export class Post extends ModelAbstract{
 }
 ```
 
-All of the @sugoi/orm predefined interface methods which mentioned before use the primary key value.
+All of the @sugoi/orm predefined methods which is mentioned before using the primary key value.
 
