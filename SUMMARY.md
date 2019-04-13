@@ -61,7 +61,7 @@
 ## @sugoi/core
 
 * [Getting started](sugoi-core/introduction.md)
-* [Policies](sugoi-core/policies/README.md)
+* [Policies \(Filters\)](sugoi-core/policies/README.md)
   * [Pre-defined polices](sugoi-core/policies/pre-defined-polices.md)
 * [Singleton](sugoi-core/singleton.md)
 * [Exception](sugoi-core/exception.md)

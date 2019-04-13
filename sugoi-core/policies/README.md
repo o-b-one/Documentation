@@ -2,7 +2,7 @@
 description: SugoiJS provides policy that can be used for guarding any function.
 ---
 
-# Policies
+# Policies \(Filters\)
 
 ## Guard your methods
 
@@ -51,6 +51,18 @@ This decorator sets a policy guard on the function it decorates:
 > failedResponseCode: number - The code will be stored under the exception if the value does not meet the criteria.
 >
 > policyMeta: any\[\] - Any further payload data which should pass to the policy.
+
+```typescript
+
+/**
+* Apply policy by anonymous function
+* only numbers lower than 5 will log
+**/
+@UsePolicy((myNumber: number)=> myNumber < 5)
+lowerThan5NumberLogger(myNumber){
+    console.log(`number is lower the 5! ${myNumber}`);
+}
+```
 
 #### Build your own policies:
 
