@@ -16,7 +16,7 @@ The combination of TypeScript, decorators, abstractions and predefined lifecycle
 
 SugoiJS has five root modules that act as standalone units:
 
-* \*\*\*\*[**@sugoi/core**](https://wiki.sugoijs.com/sugoi-core/introduction) - This is the core module of SugoiJS, it defines reusable components like policies \(aka Guards\), extendable exceptions, container handler \(for singleton\), service injection and much more! \*The core module is imported and used by all of the SugoiJS modules.
+* \*\*\*\*[**@sugoi/core**](https://wiki.sugoijs.com/sugoi-core/introduction) - This is the core module of SugoiJS, it defines utilities like policies \(aka Filters\), extendable exceptions, container handler \(for singleton\), service injection and much more! \*The core module is imported and used by all of the SugoiJS modules.
 * \*\*\*\*[**@sugoi/server**](https://wiki.sugoijs.com/sugoi-server/getting-started) - The server module provides fully decorated [express ](https://github.com/expressjs)based web server with additional abilities like:
 
   * Service injection.
