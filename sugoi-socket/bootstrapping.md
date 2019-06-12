@@ -43,6 +43,27 @@ import {SocketHandler} from "@sugoi/socket";
 const SocketHandler = socketService.init(serverInstance);
 ```
 
+### For ServerModule
+
+Server module provide the ability to initiate services on the module initialization. Since socketServer is depended on the initialized http server instance we can delay it creation by using factory, this will be done by intercept the init method with an arrow function.
+
+#### Example
+
+```typescript
+import {SocketHandler} from "@sugoi/socket";
+import {serverInstance} from "../app";
+
+@ServerModule({
+    services: [{
+            provide: () => SocketHandler.init(serverInstance),
+            useName: "SocketServer"
+        }]
+})
+export class BoostrapModule{
+    constructor(@Inject("SocketServer") private _socketServer){}
+}
+```
+
 ## Init parameters
 
 `serverInstance` =  The server instance the socket server should be attached to.  
