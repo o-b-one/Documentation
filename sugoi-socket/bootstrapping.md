@@ -43,7 +43,7 @@ import {SocketHandler} from "@sugoi/socket";
 const SocketHandler = socketService.init(serverInstance);
 ```
 
-### For ServerModule
+### For ServerModule \(@sugoi/server\)
 
 Server module provide the ability to initiate services on the module initialization. Since socketServer is depended on the initialized http server instance we can delay it creation by using factory, this will be done by intercept the init method with an arrow function.
 
