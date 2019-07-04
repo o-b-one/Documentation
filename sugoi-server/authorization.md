@@ -4,9 +4,9 @@ description: With SugoiJS Authorization check is that simple.
 
 # Authorization
 
-## The @Authorized decorator
+## Overview
 
-```text
+```typescript
 /**
  *  requiredRole: TStringOrNumber|TStringOrNumber[] - The required role(s)
  *  permissions: TStringOrNumber|TStringOrNumber[]  - The required premission(s)
@@ -15,19 +15,21 @@ description: With SugoiJS Authorization check is that simple.
 Authorized(requiredRole: TStringOrNumber|TStringOrNumber[] = null, permissions: TStringOrNumber|TStringOrNumber[] = null, failedCode: number = 401)
 ```
 
-The `Authorized` decorator use for validate the user is Authorized and in the right role and permissions\(optional\).
+The `Authorized` decorator use for validate if the user is authorized and in the right role & have the right permissions\(optional\).
 
-In case null will pass the value won't check.
+In case null will pass the value won't be checked.
+
+## Initialize
 
 The Authorized policy will use the `AuthProvider` which pass while the server init: `init(boostrapModule: any, rootPath?: string, moduleMetaKey?: string, authProvider?: AuthProvider)`
 
 The `AuthProvider` will init for each request, the `AuthProvider` holding the request headers & cookies.
 
-## Example:
+## Example
 
-### **authorization.class.ts:**
-
-```text
+{% code-tabs %}
+{% code-tabs-item title="authorization.class.ts" %}
+```typescript
 export class Authorization extends AuthProvider<User> {
 
 
@@ -70,16 +72,16 @@ export class Authorization extends AuthProvider<User> {
 
 }
 ```
+{% endcode-tabs-item %}
 
-### **app.ts:**
-
-```text
-init(boostrapModule,"/",null, Authorization)
+{% code-tabs-item title="app.ts" %}
+```typescript
+init(boostrapModule,"/",null, Authorization).build().listen(3000)
 ```
+{% endcode-tabs-item %}
 
-### **dashboard.controller.ts:**
-
-```text
+{% code-tabs-item title="dashboard.controller.ts" %}
+```typescript
 @Controller('/dashboard')
 export class DashboardController {
     constructor() {
@@ -93,5 +95,13 @@ export class DashboardController {
     }
 
 }
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+### \*\*\*\*
+
+```typescript
+
 ```
 

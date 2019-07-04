@@ -4,9 +4,21 @@ description: The ORM module of SugoiJS provides all that need for CRUD action.
 
 # Getting started
 
-The ORM module of SugoiJS provides all that need for CRUD action by supply lifecycle driven mechanism, abstraction for encapsulated shared logic for CRUD and connection handling.
+[![npm version](https://badge.fury.io/js/%40sugoi%2Form.svg)](https://badge.fury.io/js/%40sugoi%2Form) [![Build Status](https://travis-ci.org/sugoiJS/ORM.svg?branch=master)](https://travis-ci.org/sugoiJS/ORM) [![codecov](https://codecov.io/gh/sugoiJS/ORM/branch/master/graph/badge.svg)](https://codecov.io/gh/sugoiJS/ORM)
 
-### Installation
+## Overview
+
+The ORM module of SugoiJS provides all you need for defining models with CRUD actions. This done by supplying lifecycle driven mechanism, abstraction and connection handling.
+
+The ORM module designed to give you the flexability of defining your CRUD logic along with encapsulation of complex lifecycle mechanism.
+
+## Installation
+
+### @sugoi/cli
+
+Check the [get started](../get-started.md) section!
+
+### Manually
 
 > npm install --save @sugoi/orm
 
@@ -14,21 +26,21 @@ The ORM module of SugoiJS provides all that need for CRUD action by supply lifec
 
 Under your tsconfig - compilerOptions set:
 
-* `"target": "es5"`
+* `"target": "es2015"`
 * `"emitDecoratorMetadata": true`
 * `"experimentalDecorators": true`
 * `"lib": ["es2015","dom"]`
 
-**Template**
+#### **Template**
 
-You are able to use the config template which was set for the @sugoi/demo application:
+You can use the config template that was set for the @sugoi/demo application:
 
 ```text
 {
   "compilerOptions": {
     "baseUrl": "./src",
     "allowJs": true,
-    "target": "es5",
+    "target": "es2015",
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,

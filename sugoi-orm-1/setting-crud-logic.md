@@ -1,27 +1,35 @@
 ---
-description: The ModelAbstract define the interface all is left is to set the logic behind
+description: >-
+  The Model Abstract defines the interface. All that is left for you is to set
+  the logic behind.
 ---
 
 # Setting CRUD logic
 
-For CRUD support, you need to implement your CRUD logic under each of the CRUD emitters:
+## Overview
 
-**1. saveEmitter**
+SugoiJS provides custom CRUD actions for models using the CRUD emitter.
 
-```text
-public saveEmitter(options?:QueryOptions): Promise<any> {
+## Initialize 
+
+For CRUD support, you need to implement your CRUD logic under each of the CRUD emitters.
+
+### **saveEmitter**
+
+```typescript
+public saveEmitter(options?:QueryOptions,data?:any): Promise<any> {
         return rp({
             method: 'POST',
             uri: 'https://api.example.com/myendpoint',
-            body:this,
+            body: data,
             json: true
         })
 }
 ```
 
-**2. findEmitter \(static\)**
+### **findEmitter \(static\)**
 
-```text
+```typescript
 protected static findEmitter(query: any, options?:QueryOptions): Promise<any> {
         return rp({
             method: 'GET',
@@ -32,22 +40,22 @@ protected static findEmitter(query: any, options?:QueryOptions): Promise<any> {
 }
 ```
 
-**3. updateEmitter**
+### **updateEmitter**
 
-```text
-public updateEmitter(options?:QueryOptions): Promise<any> {
+```typescript
+public updateEmitter(options?:QueryOptions,data:any): Promise<any> {
         return rp({
             method: 'PUT',
             uri: `https://api.example.com/myendpoint/${this.id}`,
-            body:this,
+            body: data,
             json: true
         })
 }
 ```
 
-**4. removeEmitter \(static\)**
+### **removeEmitter \(static\)**
 
-```text
+```typescript
 protected static removeEmitter(query?,options?:QueryOptions):Promise<any> {
         return rp({
             method: 'DELETE',

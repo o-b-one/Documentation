@@ -16,7 +16,7 @@ QueryOptions class contains a `builder` method for easy "inline" usage.
 >
 > sort:Array - Array of sorted fields and their sort direction - SortItem
 
-```text
+```typescript
 SortItem{
     sortOption: SortOptions;// "DESC" | "ASC"
     field: string;
@@ -25,7 +25,7 @@ SortItem{
 
 **Usage example**
 
-```text
+```typescript
 public static pagingQuery(query:any,limit:number,page:number){
     DataModel.findAll(query, QueryOptions.builder()
                         .setLimit(limit)
