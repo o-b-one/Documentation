@@ -1,12 +1,12 @@
 ---
-description: SugoiJS provides extendable exception(error) class for better error handling.
+description: SugoiJS provides extendable exception (error) class for better error handling.
 ---
 
 # Exception
 
-SugoiJS provides base abstract exception\(error\) class which can be extended and used for exceptions handling
+SugoiJS provides base abstract exception \(error\) class which can be extended and used for exceptions handling
 
-```text
+```typescript
 SugoiError:{
     code:number;
     message:string;
@@ -14,9 +14,9 @@ SugoiError:{
 }
 ```
 
-Feel free to extend this class to identify your own error by:
+Feel free to extend this class to identify your own errors by:
 
-```text
+```typescript
 switch(err.constructor.name){
     case "MySugoiError":
         //handled error
@@ -28,7 +28,7 @@ switch(err.constructor.name){
 
 Or by:
 
-```text
+```typescript
 if( err instanceof MySugoiError){
     //handled error
 }else{
