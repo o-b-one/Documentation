@@ -4,17 +4,22 @@ description: REST based models
 
 # RESTFUL model
 
-Models of this type don't have direct connection to the storage unit.
+## Overview
 
-The communication is done by a single request. The connection closes as soon as the request is completed.
+Models of this type don't have direct connection to the storage unit. Therefore, the communication is done by a single request each time and the connection is closed as soon as the request is completed.
 
-Common usage is restful requests.
+Common usage is RESTful requests.
 
-For setting model of those type all you need to do is extend the `ModelAbstract` class
+## Initialize
 
-Example:
+For setting model of this type all you need to do is:
 
-```text
+1.  Extend the `ModelAbstract` class
+2. Define the [CRUD Logic](setting-crud-logic.md)
+
+### Example
+
+```typescript
 export class MicroServiceModel extends ModelAbstract{
     public name:string;
     
@@ -22,7 +27,17 @@ export class MicroServiceModel extends ModelAbstract{
         super();
         this.name = name;
     }
+    
+    protected saveEmitter(options?: any): Promise<any> {
+        return rp({
+            method:"POST",
+            body:this
+        });
+    }
+     // other CRUD actions implementation 
 
 }
 ```
+
+
 

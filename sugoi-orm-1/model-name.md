@@ -6,13 +6,13 @@ For changing the model name use:
 
 1. Class static method `setModelName(name:string)`:
 
-   ```text
+   ```typescript
     Post.setModelName("posts");
    ```
 
 2.  `@ModelName(name:string)` decorator:
 
-   ```text
+   ```typescript
     @ModelName("posts")
     export class Post extends ModelAbstract{
     }
