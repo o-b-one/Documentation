@@ -88,7 +88,7 @@ $ sgi update
 For defining the environment to use in the build execute:
 
 ```bash
-$ sgi build --environment=<enviroment>
+$ sgi build --environment=<environment>
 ```
 
 For example:
@@ -96,6 +96,16 @@ For example:
 ```bash
 $ sgi build --environment=production
 ```
+
+{% hint style="info" %}
+You can build for production environment by using `sgi build --prod` command
+{% endhint %}
+
+{% hint style="info" %}
+For build using hot swap listener please apply the --watch flag
+
+`sgi build --watch`
+{% endhint %}
 
 ### Update
 
