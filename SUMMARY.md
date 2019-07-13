@@ -19,11 +19,13 @@
 * [Setting services \(Injectables\)](sugoi-server/setting-services/README.md)
   * [Dynamic injectables](sugoi-server/setting-services/dynamic-injectables.md)
   * [Variable binding \(Injection\)](sugoi-server/setting-services/variable-binding-injection.md)
+* [CRUD Controller](sugoi-server/crud-controller.md)
 * [Response handling](sugoi-server/response-handling.md)
 * [Parameters validation](sugoi-server/parameters-validation.md)
 * [Authorization](sugoi-server/authorization.md)
 * [Delay module initialization](sugoi-server/delay-module-initialization.md)
-* [CRUD Controller](sugoi-server/crud-controller.md)
+* [Hooks](sugoi-server/hooks.md)
+* [Timeout](sugoi-server/timeout.md)
 
 ## @Sugoi/ORM <a id="sugoi-orm-1"></a>
 
@@ -67,6 +69,7 @@
 * [Singleton](sugoi-core/singleton.md)
 * [Exception](sugoi-core/exception.md)
 * [Casting](sugoi-core/cast.md)
+* [@Catch - error handling](sugoi-core/catch-error-handling.md)
 * [@PostConstruct\(\)](sugoi-core/postconstruct.md)
 * [@Iterable\(\)](sugoi-core/iterable.md)
 * [@Deprecated](sugoi-core/deprecated-msg-string.md)

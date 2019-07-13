@@ -8,7 +8,9 @@ description: With SugoiJS request parameters validation become easier
 
 SugoiJS provides easy, one line solution for validating the request, this by using the `@RequestSchemaPolicy` decorator.
 
-The `RequestSchemaPolicy` is similar to server module socket`SocketSchemaPolicy` method.
+{% hint style="info" %}
+The `RequestSchemaPolicy` is similar to socket module `SocketSchemaPolicy` method.
+{% endhint %}
 
 SugoiJS server module uses @sugoi/core policies ability for supplying pre-defined policies
 
@@ -31,15 +33,15 @@ Further information can be found on the [@sugoi/core package documentation](http
  *  bodySchema          - req.body
  *  headersSchema       - req.headers
  **/
-export function RequestSchemaPolicy(paramSchema: TComparableSchema);
-export function RequestSchemaPolicy(paramSchema: TComparableSchema, queryParamSchema: TComparableSchema);
-export function RequestSchemaPolicy(paramSchema: TComparableSchema, queryParamSchema: TComparableSchema, bodySchema: TComparableSchema);
-export function RequestSchemaPolicy(paramSchema: TComparableSchema, queryParamSchema: TComparableSchema, bodySchema: TComparableSchema, headersSchema: TComparableSchema);
+export function RequestSchemaPolicy(paramSchema: TComparableSchema | AJV | Joi);
+export function RequestSchemaPolicy(paramSchema: TComparableSchema | AJV | Joi, queryParamSchema: TComparableSchema);
+export function RequestSchemaPolicy(paramSchema: TComparableSchema | AJV | Joi, queryParamSchema: TComparableSchema, bodySchema: TComparableSchema);
+export function RequestSchemaPolicy(paramSchema: TComparableSchema | AJV | Joi, queryParamSchema: TComparableSchema, bodySchema: TComparableSchema, headersSchema: TComparableSchema);
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-The `RequestSchemaPolicy` decorator use for validating the request, this whild using a valid schema for Request params, Query params, body, headers.
+The `RequestSchemaPolicy` decorator use for validating the request, this while using a valid schema for Request params, Query params, body, headers.
 
 In case null will pass the value won't be check.
 
@@ -53,8 +55,8 @@ export class DashboardController {
 
     @HttpPost("/:id")
     @RequestSchemaPolicy(
-    {"id": ComparableSchema.ofType(SchemaTypes.NUMBER)},
-     null,
+    {"id": ComparableSchema.ofType(SchemaTypes.NUMBER)},// Path parameters schema
+     null,// Query parameters schema
      {
      "role": ComparableSchema.ofType(
                                      {
@@ -63,8 +65,9 @@ export class DashboardController {
                                                  .setRegex("([A-Z])+","i")
                                      }
                                      )
-     }
-     )//body schema is {role:{text:string//with regex - /([A-Z])+/i}}
+     },// body schema is {role:{text:string//with regex - /([A-Z])+/i}}
+     new Ajv().compile(ajvHeaderSchema) // header schema
+     )
     getUser(@RequestParam("id") id:number, @RequestBody() body:{role:{text:string}}) {
         return User.findOne({id,role:body.role.text})
     }
