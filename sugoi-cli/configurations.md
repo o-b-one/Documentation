@@ -22,6 +22,10 @@ The configuration directory  found on the root level of the server directory, in
         * ssl.js
         * variables.js
 
+{% hint style="info" %}
+Take a look on the build part of the [@sugoi/cli](commands.md#set-build-environment)
+{% endhint %}
+
 ## Configuration files
 
 ### security.js
