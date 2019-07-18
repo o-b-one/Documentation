@@ -7,6 +7,7 @@
 ## @sugoi/cli
 
 * [Getting started](sugoi-cli/getting-started.md)
+* [Configurations](sugoi-cli/configurations.md)
 * [Commands](sugoi-cli/commands.md)
 
 ## @sugoi/server

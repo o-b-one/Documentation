@@ -75,13 +75,52 @@ $ sgi build
 
 By default the environment which will be used for configuration is the "default" environment
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The SugoiJS build action requires the _sugoi.json_ file,  if it is missing on your project please execute update.
 
 $ sgi update
 {% endhint %}
 
+{% hint style="info" %}
+For build while using the hot swap listener please apply the --watch flag
 
+`sgi build --watch`
+{% endhint %}
+
+#### Build by project
+
+`sugoi.json` supports multi-project configuration, the configuration is found under the `project` property:
+
+```text
+"projects":{
+    "main": {
+      "entry": "src/app/main.ts",
+      "dist": "dist",
+      "commonDir": "../common",
+      "configurationDir": "configuration"
+    },
+    "microservice": {
+      "entry": "src/app/microserivce.ts",
+      "dist": "dist2",
+      "commonDir": "../common",
+      "configurationDir": "configuration",
+      "excludes": [],
+      "includes": []
+    }
+  }
+```
+
+{% hint style="info" %}
+For define which project to use run:
+
+sgi build --project=&lt;project\_name&gt;
+{% endhint %}
+
+#### Example
+
+```text
+sgi build --project=microservice
+```
 
 #### Set build environment
 
@@ -98,13 +137,7 @@ $ sgi build --environment=production
 ```
 
 {% hint style="info" %}
-You can build for production environment by using `sgi build --prod` command
-{% endhint %}
-
-{% hint style="info" %}
-For build using hot swap listener please apply the --watch flag
-
-`sgi build --watch`
+You can build for production environment by using`sgi build --prod` command
 {% endhint %}
 
 ### Update
@@ -125,9 +158,7 @@ For run those tests execute:
 $ sgi test
 ```
 
- 
-
-{% hint style="info" %}
+{% hint style="warning" %}
 The SugoiJS test action requires the _jest.configuration.js_ file, if it is missing on your project please execute update.
 
 $ sgi update

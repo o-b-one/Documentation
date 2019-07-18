@@ -23,7 +23,13 @@ function messageHandler(socket,data){
 }
 ```
 
-### Break the middleware chain
+{% hint style="info" %}
+In case value was returned \(!= undefined\) from the middleware method, this value will be be passed to next middleware and evently to the action method itself.
+{% endhint %}
+
+
+
+### Break the middlewares chain
 
 Since middlewares are sequential, you can use them to verify the data and break the flow whenever is needed.  
 By using the `BreakMiddleware` method
