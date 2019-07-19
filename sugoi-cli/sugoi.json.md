@@ -12,7 +12,7 @@ Using the sugoi.json file we are possible to define multiple micro-services unde
   "version": "4.0.0",
   "workspace": "Your Project workspace",
   "projects":{ 
-  // your projects which you can select in building process using --project=name flag
+  // your projects which you can select for building process using --project=name flag
     "main": { 
       "entry": "src/app/server.ts", // entry point of the project
       "dist": "dist/main",// where to export the file
