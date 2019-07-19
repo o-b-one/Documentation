@@ -10,7 +10,7 @@ SugoiJS is a modular framework which gives you the ability to develop faster whi
 
 SugoiJS decreases the amount of boilerplate code while using abstraction and decorators syntax while using OOP and SOLID principles this without giving up FP abilities. 
 
-SugoiJS provides an easier definition of fows in your application with predefined lifecycle hooks. It helps you to get easier debugging and testing process.
+SugoiJS provides an easier definition of flows in your application with predefined lifecycle hooks. It helps you to get easier debugging and testing process.
 
 The combination of TypeScript, decorators, abstractions and predefined lifecycles will optimize your development experience along with your application reliability.
 
