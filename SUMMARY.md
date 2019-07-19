@@ -8,6 +8,7 @@
 
 * [Getting started](sugoi-cli/getting-started.md)
 * [Configurations](sugoi-cli/configurations.md)
+* [sugoi.json](sugoi-cli/sugoi.json.md)
 * [Commands](sugoi-cli/commands.md)
 * [Get build configuration](sugoi-cli/get-build-configuration.md)
 

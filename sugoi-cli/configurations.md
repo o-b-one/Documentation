@@ -26,6 +26,8 @@ The configuration directory  found on the root level of the server directory, in
 Take a look on the build part of the [@sugoi/cli](commands.md#set-build-environment)
 {% endhint %}
 
+
+
 ## Configuration files
 
 ### security.js
@@ -84,7 +86,7 @@ module.exports = null // can be replaced with:
 
 Map of environment variables to inject in build time.
 
-access to those environment variable is possible with  Configuration resolve.
+access to those environment variable is possible via environment variables
 
 
 
@@ -94,5 +96,7 @@ access to those environment variable is possible with  Configuration resolve.
 ### Feel free to add your files which their content will be added to the configuration map that available in run-time.
 {% endhint %}
 
-
+{% hint style="success" %}
+Access to configuration variables is possible using c[onfiguration resolv](get-build-configuration.md#overview)ing.
+{% endhint %}
 
