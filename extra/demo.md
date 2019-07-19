@@ -15,56 +15,61 @@ description: Try out SugoiJS with this demo application
 
 ### What we got inside?
 
-1. 3 modules -
+1.   1. 3 modules -
+      1. CoreModule - This module use for setting core logic of our server
+      2. IndexModule - This module demonstrate usage of socket with SocketHandlerService and handling Mongo resource named DummyDataModel using MongoModel.
+      3. PostsModule - This module demonstrate handling resource named posts using ModelAbstract \(PostModel\) and come the demonstrate a "microservice" usage \(module can easily export to another server\).
+   2. 2 controllers
+      * /index - 2 paths guarded by policy and 1 unguarded:
 
-   CoreModule - This module use for setting core logic of our server
+        > authorized access required - use header x-sug-demo with value set to "Wyn1RRR9PQJPaqYM"
 
-   IndexModule - This module demonstrate usage of socket with SocketHandlerService and handling Mongo resource named DummyDataModel using MongoModel.
+        * `GET /api/index/data/:id` - get DummyData record
 
-   PostsModule - This module demonstrate handling Microservice resource named posts using ModelAbstract \(PostModel\).
+          schema - `{id:string//with regex "([a-z])+"}`
 
-2. 2 controllers
-   * /index - 2 paths guarded by policy and 1 unguarded:
-     * `GET /api/index/data/:id` - get DummyData record
+        * `POST /api/index/data` - create new DummyData record
 
-       schema - `{id:string//with regex "([a-z])+"}`
+          schema - `{amount:number//>=2}`
 
-     * `POST /api/index/data` - create new DummyData record
+        * `PUT /api/index/data/:id` - update existing DummyData record
 
-       schema - `{amount:number//>=2}`
+          schema - `{amount:number//>=2}`
 
-     * `PUT /api/index/data/:id` - update existing DummyData record
+        * `DELETE /api/index/data/:id` - remove existing DummyData record
 
-       schema - `{amount:number//>=2}`
+   * `GET /api/index/changeColor` - update background color for all connected clients \(using sockets\)
+   * /post - 4 unguarded paths:
+     * `GET /api/post/:id?` - get all of the posts or by id \(id is optional param\)
+     * `POST /api/post` - create new post.
+     * `PUT /api/post/:id` - update existing post.
+     * `DELETE /api/post/:id` - remove existing post.
 
-     * `DELETE /api/index/data/:id` - remove existing DummyData record
+   1. 1 Service:
+      * SocketHandlerService which handle the socket events
+   2. 1 Authorization class:
+      * Authorization - extends AuthProvider and apply the checks of @Authorized decorator
 
-* `GET /api/index/changeColor` - update background color for all connected clients \(using sockets\)
+   **File structure**
 
-  authorized access required - use header x-sug-demo with value set to "Wyn1RRR9PQJPaqYM"
+   * client - directory for our client project
+   * assets - client project compiled & minified code
+   * common - generic files which used for both client & server
+   * server - directory for our server project
 
-  * /post - 4 unguarded paths:
+     -- config - webpack configs
 
-* `GET /api/post/:id?` - get all of the posts or by id \(id is optional param\)
-* `POST /api/post` - create new post.
-* `PUT /api/post/:id` - update existing post.
-* `DELETE /api/post/:id` - remove existing post.
+     -- dist - compiled code
 
-1. 1 Service:
-   * SocketHandlerService which handle the socket events and trigger background color change
-2. 1 Authorization class:
-   * Authorization - extends AuthProvider and apply the checks of @Authorized decorator
+     -- src - application directory
 
-### File structure
+     > -- config - services, paths and generic configs
+     >
+     > -- core - Application generic classes, interface, utils etc.
+     >
+     > -- modules - All of our application modules, each module should be handle as separate unit for code sharing or export to micro-service. Application bootstrap
 
-* client - directory for our client project
-* assets - client project compiled & minified code
-* common - generic files which used for both client & server
-* server - directory for our server 
-* config - webpack configs
-* dist - compiled code
-* src - application directory
-  *  config - Application bootstrap, services, paths and generic config
-  *  core - Application generic classes, interface, utils etc.
-  * modules - All of our application modules, each module should be handle as separate unit for code sharing or export to micro-service.
+   **Documentation**
+
+   You can find further information on [Sugoi official website](http://www.sugoijs.com)
 

@@ -9,6 +9,7 @@
 * [Getting started](sugoi-cli/getting-started.md)
 * [Configurations](sugoi-cli/configurations.md)
 * [Commands](sugoi-cli/commands.md)
+* [Get build configuration](sugoi-cli/get-build-configuration.md)
 
 ## @sugoi/server
 
@@ -27,6 +28,7 @@
 * [Delay module initialization](sugoi-server/delay-module-initialization.md)
 * [Hooks](sugoi-server/hooks.md)
 * [Timeout](sugoi-server/timeout.md)
+* [Using configuration](sugoi-server/using-configuration.md)
 
 ## @Sugoi/ORM <a id="sugoi-orm-1"></a>
 
@@ -74,7 +76,9 @@
 * [@PostConstruct\(\)](sugoi-core/postconstruct.md)
 * [@Iterable\(\)](sugoi-core/iterable.md)
 * [@Deprecated](sugoi-core/deprecated-msg-string.md)
+* [Run time decorate \( + JS support\)](sugoi-core/run-time-decorate-+-js-support.md)
 * [ComparableSchema](sugoi-core/comparableschema.md)
+* [Using configuration](sugoi-core/using-configuration.md)
 
 ## Extra
 
