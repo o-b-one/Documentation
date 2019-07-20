@@ -16,6 +16,8 @@ Applying decorators in run-time provides us the ability to use decorators by pur
 
 For applying decorator method on a call we are able to call the sugoiJS `decorate` method
 
+`decorateProperty(methodToApply, target)`
+
 #### Example
 
 ```javascript
@@ -40,6 +42,8 @@ decorate(Catch(()=>false),Validator);
 
 For applying decorator method on class property we are able to call the sugoiJS `decorateProperty` method
 
+`decorateProperty(methodToApply, target, property)`
+
 #### Example
 
 ```javascript
@@ -55,6 +59,6 @@ class Validator(){
         }
     }
 }
-decorateProperty(Catch(()=>false),Validator.validate);
+decorateProperty(Catch(()=>false), Validator, 'validate');
 ```
 

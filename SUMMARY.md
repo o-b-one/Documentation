@@ -80,6 +80,7 @@
 * [Run time decorate \( + JS support\)](sugoi-core/run-time-decorate-+-js-support.md)
 * [ComparableSchema](sugoi-core/comparableschema.md)
 * [Using configuration](sugoi-core/using-configuration.md)
+* [@OnEvent - event handling](sugoi-core/onevent-event-handling.md)
 
 ## Extra
 
