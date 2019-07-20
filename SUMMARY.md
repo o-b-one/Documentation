@@ -77,10 +77,10 @@
 * [@PostConstruct\(\)](sugoi-core/postconstruct.md)
 * [@Iterable\(\)](sugoi-core/iterable.md)
 * [@Deprecated](sugoi-core/deprecated-msg-string.md)
+* [@OnEvent - event handling](sugoi-core/onevent-event-handling.md)
 * [Run time decorate \( + JS support\)](sugoi-core/run-time-decorate-+-js-support.md)
 * [ComparableSchema](sugoi-core/comparableschema.md)
 * [Using configuration](sugoi-core/using-configuration.md)
-* [@OnEvent - event handling](sugoi-core/onevent-event-handling.md)
 
 ## Extra
 
