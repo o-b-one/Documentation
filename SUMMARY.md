@@ -86,4 +86,5 @@
 
 * [Full demo](extra/demo.md)
 * [ORM demo](extra/orm-demo.md)
+* [Upgrade to V4](extra/upgrade-to-v4.md)
 
