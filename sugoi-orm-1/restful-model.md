@@ -22,7 +22,10 @@ For setting model of this type all you need to do is:
 ```typescript
 export class MicroServiceModel extends ModelAbstract{
     public name:string;
-    
+   
+    @Primary()
+    public id: string;
+  
     constructor(name:string){
         super();
         this.name = name;
